@@ -124,4 +124,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Dynamic Rainbow Background
+    const rainbowContainer = document.querySelector('.rainbow-container');
+    if (rainbowContainer) {
+        const barCount = 25;
+        const animationTime = 45;
+        const palette = [
+            ['#e879f9', '#60a5fa', '#94e2d2'],
+            ['#e879f9', '#94e2d2', '#60a5fa'],
+            ['#94e2d2', '#e879f9', '#60a5fa'],
+            ['#94e2d2', '#60a5fa', '#e879f9'],
+            ['#60a5fa', '#94e2d2', '#e879f9'],
+            ['#60a5fa', '#e879f9', '#94e2d2']
+        ];
+
+        for (let i = 1; i <= barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'rainbow';
+            const colors = palette[Math.floor(Math.random() * palette.length)];
+            const duration = animationTime - (animationTime / barCount / 2) * i;
+            const delay = -(i / barCount) * animationTime;
+
+            bar.style.boxShadow = `
+                -130px 0 80px 40px white,
+                -50px 0 50px 25px ${colors[0]},
+                0 0 50px 25px ${colors[1]},
+                50px 0 50px 25px ${colors[2]},
+                130px 0 80px 40px white
+            `;
+            bar.style.animationDuration = `${duration}s`;
+            bar.style.animationDelay = `${delay}s`;
+            rainbowContainer.appendChild(bar);
+        }
+    }
 });

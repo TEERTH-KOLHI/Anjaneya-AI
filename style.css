@@ -26,7 +26,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
     width: 100%;
     position: relative;
@@ -168,12 +169,153 @@ h3 {
     color: white;
 }
 
+/* Premium Buttons */
+.btn-premium {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #e2eb88 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 15px rgba(247, 255, 152, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.btn-premium::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg);
+    transition: 0.6s var(--transition);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.btn-premium:hover::after {
+    left: 100%;
+    top: 100%;
+    opacity: 1;
+}
+
+.btn-premium:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(247, 255, 152, 0.4);
+}
+
+.btn-premium-outline {
+    background: transparent !important;
+    border: 1.5px solid var(--text-color) !important;
+    transition: all 0.4s var(--transition);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-premium-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--text-color);
+    transition: width 0.4s var(--transition);
+    z-index: -1;
+}
+
+.btn-premium-outline:hover::before {
+    width: 100%;
+}
+
+.btn-premium-outline:hover {
+    color: white !important;
+    transform: translateY(-3px);
+}
+
 /* Hero Section */
 .hero {
-    padding: 100px 0 40px;
+    padding: 120px 0 40px;
     text-align: left;
     position: relative;
     overflow: hidden;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #e2eb88 0%, transparent 70%);
+    bottom: -50px;
+    left: -50px;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #222C2C 0%, transparent 70%);
+    top: 40%;
+    left: 30%;
+    opacity: 0.15;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
 }
 
 .hero .container.hero-content {
@@ -186,6 +328,36 @@ h3 {
 .hero-content {
     position: relative;
     z-index: 2;
+}
+
+/* Staggered Reveal Animation */
+.stagger-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: revealUp 1s var(--transition) forwards;
+}
+
+.stagger-reveal:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stagger-reveal:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stagger-reveal:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stagger-reveal:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes revealUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .badge {
@@ -282,7 +454,7 @@ h3 {
 .services,
 .keyword-strategy,
 .local-seo {
-    padding: 80px 0;
+    padding: 50px 0;
 }
 
 .on-page {
@@ -296,13 +468,13 @@ h3 {
 .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 40px;
+    margin: 0 auto 24px;
 }
 
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px;
     margin-bottom: 0;
 }
 
@@ -334,7 +506,7 @@ h3 {
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
+    animation: squeeze3124 0.6s ease-out;
     border-color: var(--primary-color);
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.08);
 }
@@ -539,7 +711,7 @@ h3 {
     border-radius: var(--radius-l);
     max-width: var(--container-width);
     /* Constrain the section itself */
-    margin: 60px auto;
+    margin: 40px auto;
     /* Center the "box" and give it vertical space */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -553,7 +725,7 @@ h3 {
 }
 
 .roadmap-item:hover {
-    transform: translateY(-8px);
+    animation: squeeze3124 0.6s ease-out;
     background: rgba(255, 255, 255, 0.08);
     border-color: var(--primary-color);
 }
@@ -614,7 +786,7 @@ h3 {
 
 /* Pricing */
 .pricing {
-    padding: 80px 0;
+    padding: 50px 0;
     text-align: center;
 }
 
@@ -626,6 +798,12 @@ h3 {
     border-radius: var(--radius-m);
     border: var(--border-width) solid var(--border-color);
     box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.pricing-card:hover {
+    animation: squeeze3124 0.6s ease-out;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.08);
 }
 
 .price {
@@ -681,6 +859,7 @@ h3 {
 }
 
 @media (max-width: 768px) {
+
     /* Premium Mobile Typography */
     h1 {
         font-size: 2.25rem !important;
@@ -722,7 +901,7 @@ h3 {
         justify-content: center;
         align-items: center;
         gap: 32px;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         transition: 0.4s var(--transition);
         z-index: 1000;
         padding: 40px;
@@ -781,12 +960,17 @@ h3 {
     }
 
     /* Grid Stacking & Centering */
-    .bento-grid, .enterprise-grid, .stats-grid, .impact-grid {
+    .bento-grid,
+    .enterprise-grid,
+    .stats-grid,
+    .impact-grid {
         grid-template-columns: 1fr !important;
         text-align: center !important;
     }
 
-    .service-card, .ent-card, .stat-item {
+    .service-card,
+    .ent-card,
+    .stat-item {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -794,7 +978,8 @@ h3 {
         padding: 32px 24px !important;
     }
 
-    .pricing-card, .compare-card {
+    .pricing-card,
+    .compare-card {
         padding: 32px 20px !important;
     }
 
@@ -824,6 +1009,7 @@ h3 {
         width: 100% !important;
         max-width: 280px;
     }
+
     /* Footer Cleanup */
     .footer-grid {
         text-align: left;
@@ -851,7 +1037,7 @@ h3 {
 
 /* Lifecycle Section */
 .lifecycle {
-    padding: 120px 0;
+    padding: 60px 0;
     overflow: hidden;
 }
 
@@ -943,7 +1129,7 @@ h3 {
 
 /* Tech Stack */
 .tech-stack {
-    padding: 100px 0;
+    padding: 60px 0;
     background: var(--secondary-bg);
 }
 
@@ -974,7 +1160,7 @@ h3 {
 
 /* Impact Section */
 .impact {
-    padding: 120px 0;
+    padding: 60px 0;
 }
 
 .impact-grid {
@@ -987,7 +1173,7 @@ h3 {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px;
     margin-top: 60px;
 }
 
@@ -1017,7 +1203,7 @@ h3 {
 
 /* FAQ Section */
 .faq {
-    padding: 120px 0;
+    padding: 60px 0;
 }
 
 .faq-accordion {
@@ -1317,7 +1503,8 @@ h3 {
     }
 
     .footer-about p br {
-        display: none; /* Let text flow naturally on smaller screens */
+        display: none;
+        /* Let text flow naturally on smaller screens */
     }
 }
 
@@ -1329,7 +1516,7 @@ h3 {
 
 /* Advantage Section (Sticky Scroll) */
 .advantage {
-    padding: 120px 0;
+    padding: 60px 0;
     position: relative;
     background: radial-gradient(circle at 10% 20%, rgba(247, 255, 152, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(247, 255, 152, 0.05) 0%, transparent 40%);
@@ -1355,7 +1542,7 @@ h3 {
 
     .advantage-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 16px;
     }
 
     .advantage-scroll {
@@ -1397,7 +1584,7 @@ h3 {
 }
 
 .compare-card:hover {
-    transform: translateY(-8px);
+    animation: squeeze3124 0.6s ease-out;
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.08);
 }
 
@@ -1423,14 +1610,14 @@ h3 {
 
 /* Enterprise Grid */
 .enterprise {
-    padding: 120px 0;
+    padding: 60px 0;
     background: var(--secondary-bg);
 }
 
 .enterprise-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px;
 }
 
 @media (max-width: 992px) {
@@ -1456,7 +1643,7 @@ h3 {
 }
 
 .ent-card:hover {
-    transform: translateY(-8px);
+    animation: squeeze3124 0.6s ease-out;
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.08);
 }
 
@@ -1485,7 +1672,7 @@ h3 {
 
 /* Mission Section */
 .mission {
-    padding: 180px 0;
+    padding: 80px 0;
 }
 
 .massive-text {
@@ -1499,11 +1686,11 @@ h3 {
 
 /* Ecosystem Section */
 .ecosystem {
-    padding: 120px 0;
+    padding: 60px 0;
 }
 
 .tools {
-    padding: 120px 0;
+    padding: 60px 0;
 }
 
 .ecosystem-map {
@@ -1539,7 +1726,7 @@ h3 {
 .eco-tag:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    transform: scale(1.05);
+    animation: squeeze3124 0.9s both;
 }
 
 /* Old Snapshot Section styles removed */
@@ -1548,8 +1735,8 @@ h3 {
 .roadmap-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 60px;
+    gap: 16px;
+    margin-top: 40px;
 }
 
 @media (max-width: 992px) {
@@ -1573,7 +1760,11 @@ h3 {
     }
 
     /* Vertical Stacking Resets */
-    .bento-grid, .enterprise-grid, .stats-grid, .impact-grid, .advantage-grid {
+    .bento-grid,
+    .enterprise-grid,
+    .stats-grid,
+    .impact-grid,
+    .advantage-grid {
         grid-template-columns: 1fr !important;
     }
 
@@ -1588,4 +1779,251 @@ h3 {
     }
 }
 
-
+
+@keyframes squeeze3124 {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    40% {
+        transform: scale3d(0.98, 1.02, 1);
+    }
+
+    50% {
+        transform: scale3d(1.02, 0.98, 1);
+    }
+
+    65% {
+        transform: scale3d(0.99, 1.01, 1);
+    }
+
+    75% {
+        transform: scale3d(1.01, 0.99, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+/* Final Cinematic Button Applied Correctly */
+.btn-cinematic {
+    padding: 14px 28px !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    letter-spacing: 2px !important;
+    color: transparent !important;
+    border: 3px solid var(--primary-color) !important;
+    font-size: 16px !important;
+    position: relative !important;
+    font-family: var(--font-body) !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    transition: all 0.5s !important;
+    font-weight: 600 !important;
+    min-width: 200px !important;
+    box-sizing: border-box !important;
+}
+
+.btn-cinematic::before {
+    content: "Start Optimization" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--text-color) !important;
+    color: var(--primary-color) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: all 0.5s !important;
+    font-family: var(--font-body) !important;
+}
+
+.btn-cinematic:hover::before {
+    left: 100% !important;
+    transform: scale(0) rotateY(360deg) !important;
+    opacity: 0 !important;
+}
+
+.btn-cinematic::after {
+    content: "Start Optimization" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--text-color) !important;
+    color: var(--primary-color) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: all 0.5s !important;
+    transform: scale(0) rotateY(0deg) !important;
+    opacity: 0 !important;
+    font-family: var(--font-body) !important;
+}
+
+.btn-cinematic:hover::after {
+    left: 0 !important;
+    transform: scale(1) rotateY(360deg) !important;
+    opacity: 1 !important;
+}
+
+
+/* Navbar Cinematic Button - Rounded & Theme Colors */
+.nav-button {
+    appearance: none;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all .15s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nav-button::before,
+.nav-button::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: calc(50% - 5px);
+    border: 1px solid var(--border-color);
+    transition: all .15s ease;
+    border-radius: 99px;
+}
+
+.nav-button::before {
+    top: 0;
+    border-bottom-width: 0;
+    border-radius: 99px 99px 0 0;
+}
+
+.nav-button::after {
+    bottom: 0;
+    border-top-width: 0;
+    border-radius: 0 0 99px 99px;
+}
+
+.nav-button:active::before,
+.nav-button:active::after {
+    right: 3px;
+    left: 3px;
+}
+
+.nav-button:active::before {
+    top: 3px;
+}
+
+.nav-button:active::after {
+    bottom: 3px;
+}
+
+.button_lg {
+    position: relative;
+    display: block;
+    padding: 8px 20px;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    overflow: hidden;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+    border-radius: 99px;
+}
+
+.button_sl {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-image: linear-gradient(to bottom right, var(--accent-color), var(--primary-color));
+    transform: skew(-15deg);
+    transition: all .2s ease;
+}
+
+.button_text {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-button:hover .button_sl {
+    width: calc(100% + 15px);
+}
+
+.nav-button:hover .button_lg::after {
+    background-color: #fff;
+}
+
+/* Rainbow Background Effect */
+.rainbow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.rainbow {
+    height: 100vh;
+    width: 0;
+    top: 0;
+    position: absolute;
+    transform: rotate(10deg);
+    transform-origin: top right;
+    animation-name: rainbow-slide;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.15;
+}
+
+.h-layer {
+    box-shadow: 0 0 50vh 40vh white;
+    width: 100vw;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+}
+
+.v-layer {
+    box-shadow: 0 0 35vw 25vw white;
+    width: 0;
+    height: 100vh;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+}
+
+@keyframes rainbow-slide {
+    from {
+        right: -25vw;
+    }
+
+    to {
+        right: 125vw;
+    }
+}

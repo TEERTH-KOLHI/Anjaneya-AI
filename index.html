@@ -31,7 +31,12 @@
                 <a href="#services">Services</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#timeline">Timeline</a>
-                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#contact" class="nav-button">
+                    <span class="button_lg">
+                        <span class="button_sl"></span>
+                        <span class="button_text">Get Started</span>
+                    </span>
+                </a>
             </div>
             <button class="menu-toggle" aria-label="Toggle Menu">
                 <i class="ri-menu-line"></i>
@@ -40,15 +45,29 @@
     </nav>
 
     <header class="hero">
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-bg-overlay"></div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="rainbow-container">
+            <!-- Injected via script.js -->
+            <div class="h-layer"></div>
+            <div class="v-layer"></div>
+        </div>
         <div class="container hero-content">
-            <div class="badge fade-in">India's Most Comprehensive SEO Package</div>
-            <h1 class="fade-in">Rank Higher. <span class="gradient-text">Convert Better.</span> <br>Grow Faster.</h1>
-            <p class="fade-in">India's most comprehensive SEO package - built on data, executed with precision, and
+            <div class="badge stagger-reveal">India's Most Comprehensive SEO Package</div>
+            <h1 class="stagger-reveal">Rank Higher. <span class="gradient-text">Convert Better.</span> <br>Grow Faster.
+            </h1>
+            <p class="stagger-reveal">India's most comprehensive SEO package - built on data, executed with precision,
+                and
                 engineered to deliver measurable rankings in 12 weeks.</p>
-            <div class="cta-group fade-in">
-                <a href="#pricing" class="btn btn-primary">Start Optimization</a>
-                <a href="#services" class="btn btn-outline">Explore Roadmap</a>
+            <div class="cta-group stagger-reveal">
+                <a href="#pricing" class="btn btn-primary btn-cinematic" data-text="Start Optimization">Start
+                    Optimization</a>
+                <a href="#services" class="btn btn-outline btn-premium-outline">Explore Roadmap</a>
             </div>
 
             <div class="hero-snapshot reveal">
@@ -378,7 +397,11 @@
                 </div>
 
                 <div class="footer-about">
-                    <p>About Anjaneya AI: Anjaneya AI is India's premier AI-driven SEO agency, delivering 100% white-hat<br>                     results and measurable rankings in 12 weeks. We combine expert human strategy with cutting-edge<br>                         AI technology to solve the most complex search challenges for growing enterprises.<br>                         Our mission is to democratize elite-level SEO growth for businesses across India.</p>
+                    <p>About Anjaneya AI: Anjaneya AI is India's premier AI-driven SEO agency, delivering 100%
+                        white-hat<br> results and measurable rankings in 12 weeks. We combine expert human strategy with
+                        cutting-edge<br> AI technology to solve the most complex search challenges for growing
+                        enterprises.<br> Our mission is to democratize elite-level SEO growth for businesses across
+                        India.</p>
                 </div>
 
                 <div class="footer-bottom">
