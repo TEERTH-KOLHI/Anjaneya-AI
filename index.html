@@ -16,18 +16,26 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="container nav-content">
-            <div class="logo">Anjaneya AI</div>
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="Anjaneya AI">
+                <span>Anjaneya AI</span>
+            </a>
             <div class="nav-links">
                 <a href="#services">Services</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#timeline">Timeline</a>
                 <a href="#contact" class="btn btn-primary">Get Started</a>
             </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <i class="ri-menu-line"></i>
+            </button>
         </div>
     </nav>
 
@@ -35,8 +43,8 @@
         <div class="hero-bg-overlay"></div>
         <div class="container hero-content">
             <div class="badge fade-in">India's Most Comprehensive SEO Package</div>
-            <h1 class="fade-in">Rank Higher. <span class="gradient-text">Convert Better.</span> Grow Faster.</h1>
-            <p class="fade-in">India's most comprehensive SEO package — built on data, executed with precision, and
+            <h1 class="fade-in">Rank Higher. <span class="gradient-text">Convert Better.</span> <br>Grow Faster.</h1>
+            <p class="fade-in">India's most comprehensive SEO package - built on data, executed with precision, and
                 engineered to deliver measurable rankings in 12 weeks.</p>
             <div class="cta-group fade-in">
                 <a href="#pricing" class="btn btn-primary">Start Optimization</a>
@@ -46,7 +54,8 @@
             <div class="hero-snapshot reveal">
                 <div class="snapshot-header">
                     <h3>Package Snapshot</h3>
-                    <p>₹55,000 | 12 Weeks | 100% White-Hat</p>
+                    <div class="snapshot-divider"></div>
+                    <p>₹55,000 | 12 Weeks | Monthly Retainer</p>
                 </div>
                 <div class="snapshot-grid">
                     <div class="snap-item"><strong>300+</strong> Keywords</div>
@@ -56,10 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero-image fade-in">
-            <img src="C:/Users/teerthkolhi/.gemini/antigravity/brain/90eb308b-380c-45fb-9be7-4862457c6d15/hero_bg_anjaneya_1773485826960.png"
-                alt="Anjaneya AI Technical Grid">
-        </div>
+
     </header>
 
     <section id="services" class="services">
@@ -71,27 +77,51 @@
             </div>
             <div class="bento-grid">
                 <div class="service-card reveal">
-                    <div class="icon-box">
-                        <img src="C:/Users/teerthkolhi/.gemini/antigravity/brain/90eb308b-380c-45fb-9be7-4862457c6d15/seo_3d_icon_1773485844594.png"
-                            alt="SEO Icon">
-                    </div>
                     <h3>Core Web Vitals</h3>
-                    <p>LCP, FID, and CLS audit and fixes to meet Google's page experience benchmarks for speed and
+                    <p class="service-desc">LCP, FID, and CLS audit and fixes to meet Google's page experience
+                        benchmarks for speed and
                         stability.</p>
                 </div>
                 <div class="service-card reveal">
                     <h3>Mobile-First Indexing</h3>
-                    <p>Full responsive audit, tap target sizing, and mobile usability resolution across all pages.</p>
+                    <p class="service-desc">Full responsive audit, tap target sizing, and mobile usability resolution
+                        across all pages.</p>
                 </div>
                 <div class="service-card reveal card-wide">
                     <h3>Crawl Error Resolution</h3>
-                    <p>Fix 404 errors, redirect chains, and broken links that silently leak your SEO equity every day.
+                    <p class="service-desc">Fix 404 errors, redirect chains, and broken links that silently leak your
+                        SEO equity every day.
                     </p>
                     <ul class="spec-list compact">
                         <li>XML Sitemap & Robots.txt</li>
                         <li>HTTPS & Security Audit</li>
                         <li>Silo Architecture Design</li>
                     </ul>
+                </div>
+                <div class="service-card reveal visual-card">
+                    <div class="audit-animation-container">
+                        <div class="diagnostic-grid"></div>
+                        <div class="diagnostic-code">
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line vr"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line vr"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                        </div>
+                        <div class="audit-scan-line"></div>
+                        <div class="health-meter">
+                            <div class="meter-label">Site Health</div>
+                            <div class="meter-value">98%</div>
+                        </div>
+                        <div class="diagnostic-nodes">
+                            <div class="d-node pulse"></div>
+                            <div class="d-node fix"></div>
+                            <div class="d-node fix"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +131,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="reveal">Keyword Research & Strategy</h2>
-                <p class="reveal">We don't guess — we research. Using enterprise-level tools to build a 300+ keyword
+                <p class="reveal">We don't guess - we research. Using enterprise-level tools to build a 300+ keyword
                     database.</p>
             </div>
             <div class="advantage-grid">
@@ -112,7 +142,7 @@
                 </div>
                 <div class="compare-card reveal">
                     <h3>Competitor Gap Analysis</h3>
-                    <p>We uncover 100+ keywords your top 5 competitors rank for but you don't — identifying quick-win
+                    <p>We uncover 100+ keywords your top 5 competitors rank for but you don't - identifying quick-win
                         opportunities.</p>
                 </div>
             </div>
@@ -125,7 +155,7 @@
                 <div class="pricing-header">
                     <span class="plan-badge">Full Package</span>
                     <h2>SEO Master Suite</h2>
-                    <div class="price">₹55,000 <span>one-time fee</span></div>
+                    <div class="price">₹55,000 <span>per month</span></div>
                 </div>
                 <div class="pricing-features">
                     <ul>
@@ -175,11 +205,11 @@
                 <h2>Link Building & Off-Page</h2>
                 <p>Genuine, high-authority links that move the needle. No spam, no shortcuts, no penalties.</p>
                 <ul class="spec-list">
-                    <li><strong>High-DA Guest Posting (DA 40+)</strong> — Manual outreach to vetted sites in your niche.
+                    <li><strong>High-DA Guest Posting (DA 40+)</strong>: Manual outreach to vetted sites in your niche.
                     </li>
-                    <li><strong>Broken Link Reclamation</strong> — Replacing dead links with your high-value content.
+                    <li><strong>Broken Link Reclamation</strong> - Replacing dead links with your high-value content.
                     </li>
-                    <li><strong>Digital PR</strong> — press releases and brand mentions that pass real authority.</li>
+                    <li><strong>Digital PR</strong>: Press releases and brand mentions that pass real authority.</li>
                 </ul>
             </div>
             <div class="impact-visual reveal">
@@ -294,11 +324,8 @@
             </div>
             <div class="faq-accordion">
                 <div class="accordion-item reveal">
-                    <button class="accordion-header">Is ₹55,000 a one-time fee or monthly?</button>
-                    <div class="accordion-content">
-                        <p>It is a complete one-time package fee covering 12 weeks of full-service SEO delivery. No
-                            hidden monthly charges or recurring fees.</p>
-                    </div>
+                    <p>It is a comprehensive monthly retainer covering full-service SEO delivery. No
+                        hidden charges or setup fees.</p>
                 </div>
                 <div class="accordion-item reveal">
                     <button class="accordion-header">How soon will I see ranking improvements?</button>
@@ -318,37 +345,54 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <div class="logo">Anjaneya AI</div>
-                <p>Join businesses across India that trust Anjaneya AI to deliver real, lasting SEO growth.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Solutions</h4>
-                <a href="#services">Roadmap</a>
-                <a href="#on-page">Strategy</a>
-                <a href="#off-page">Backlinks</a>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <a href="#snapshot">Snapshot</a>
-                <a href="#pricing">Plan</a>
-                <a href="#faq">Support</a>
-            </div>
-            <div class="footer-cta">
-                <h4>Start Ranking</h4>
-                <p>₹55,000 · Complete Package · 12 Weeks</p>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="Domain name...">
-                    <button class="btn btn-primary">Analyze</button>
+    <div class="footer-wrapper">
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="footer-brand-section">
+                        <div class="logo">
+                            <img src="assets/logo.png" alt="Anjaneya AI">
+                            <span>Anjaneya AI</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" aria-label="Twitter"><i class="ri-twitter-line"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+                            <a href="#" aria-label="Discord"><i class="ri-discord-line"></i></a>
+                            <a href="#" aria-label="Telegram"><i class="ri-telegram-line"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-nav-section">
+                        <a href="#services">Solutions</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#roadmap">Roadmap</a>
+                        <a href="#faq">Support</a>
+                    </div>
+                    <div class="footer-newsletter-section">
+                        <p><i class="ri-mail-line"></i> Follow us for latest updates & launches</p>
+                        <div class="newsletter-box">
+                            <input type="email" placeholder="Enter your email">
+                            <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-about">
+                    <p>About Anjaneya AI: Anjaneya AI is India's premier AI-driven SEO agency, delivering 100% white-hat<br>                     results and measurable rankings in 12 weeks. We combine expert human strategy with cutting-edge<br>                         AI technology to solve the most complex search challenges for growing enterprises.<br>                         Our mission is to democratize elite-level SEO growth for businesses across India.</p>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="bottom-left">
+                        <span>© ANJANEYA AI 2026 | ANJANEYA AI OFFICIAL WEBSITE</span>
+                    </div>
+                    <div class="bottom-right">
+                        <a href="#">TERMS OF USE</a>
+                        <a href="#">PRIVACY POLICY</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Anjaneya AI. All rights reserved. 100% White-Hat Optimization.</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

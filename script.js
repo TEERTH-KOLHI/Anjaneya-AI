@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const item = header.parentElement;
             const isActive = item.classList.contains('active');
-            
+
             // Close all items
             document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-            
+
             if (!isActive) {
                 item.classList.add('active');
             }
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (stat.innerText.includes('₹')) {
                     stat.innerText = `₹${newValue.toLocaleString()}`;
                 } else if (stat.innerText.includes('%') || stat.getAttribute('data-target') === "100") {
-                   stat.innerText = `${newValue}%`;
+                    stat.innerText = `${newValue}%`;
                 } else {
                     stat.innerText = newValue;
                 }
@@ -104,4 +104,24 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.transform = '';
         });
     });
+
+    // 8. Mobile Menu Logic
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const isOpen = navLinks.classList.contains('active');
+            menuToggle.innerHTML = isOpen ? '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="ri-menu-line"></i>';
+            });
+        });
+    }
 });
