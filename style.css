@@ -431,6 +431,22 @@ h3 {
     visibility: visible;
 }
 
+/* Video Switcher Pill Label */
+.pill-label {
+    position: absolute;
+    top: -28px;
+    right: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    z-index: 1010;
+}
+
 /* Video Switcher Pill (Even Smaller) */
 .video-switcher-pill {
     display: flex;
@@ -530,8 +546,7 @@ h3 {
     z-index: 1010;
 }
 
-.video-container:hover .video-controls,
-.is-expanded .video-controls {
+.video-container:hover .video-controls {
     opacity: 1;
     transform: translateY(0);
 }

@@ -336,12 +336,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('active');
 
                 // Update Video Containers
+                const pillLabel = document.querySelector('.pill-label');
                 videoContainers.forEach(container => {
                     const video = container.querySelector('video');
                     container.classList.remove('active');
                     if (container.id === `video-${videoId}`) {
                         container.classList.add('active');
-                        // Ensure the new active video plays if it's the expected behavior
+                        if (pillLabel) pillLabel.innerText = `Video ${videoId}`;
                     } else {
                         // Pause the inactive video
                         if (video) video.pause();
