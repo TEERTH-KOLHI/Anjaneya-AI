@@ -380,18 +380,6 @@ h3 {
     }
 }
 
-@media (max-width: 768px) {
-    .hero-video-overlay {
-        position: absolute;
-        top: 650px; /* Position below hero text */
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: 90vw;
-        max-width: 400px;
-    }
-}
-
 .hero-video-overlay.is-expanded {
     position: fixed;
     top: 50% !important;
@@ -1248,7 +1236,7 @@ h3 {
 
     /* Hero Center Overhaul */
     .hero {
-        padding: 60px 0 40px !important;
+        padding: 60px 0 100px !important;
         text-align: center !important;
     }
 
@@ -1256,6 +1244,22 @@ h3 {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+    }
+
+    .hero-video-overlay {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 520px !important;
+        margin: 40px auto 0 !important;
+        padding: 0 20px !important;
+    }
+
+    .video-main-frame {
+        height: auto !important; /* Ensure video container scales to content on mobile */
     }
 
     .hero p {
