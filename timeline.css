@@ -17,8 +17,16 @@
 }
 
 @media (max-width: 768px) {
+  #roadmap {
+    margin: 0 12px;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  
   .roadmap-box {
     --radius: 56vw; /* Keeps labels on screen */
+    box-sizing: border-box;
+    width: 100%;
   }
   
   .wheel-wrap {
