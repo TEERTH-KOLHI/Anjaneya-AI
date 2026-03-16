@@ -160,4 +160,163 @@ document.addEventListener('DOMContentLoaded', () => {
             rainbowContainer.appendChild(bar);
         }
     }
+    // Authority Surge Canvas Animation (Iteration 2)
+    const initAuthoritySurge = () => {
+        const canvas = document.getElementById('authority-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const container = canvas.parentElement;
+        const fill = container.querySelector('.meter-fill');
+        const marker = container.querySelector('.meter-marker');
+        
+        let width, height, time = 0;
+        let results = [];
+        let ribbons = [];
+
+        const resize = () => {
+            width = canvas.width = container.offsetWidth;
+            height = canvas.height = container.offsetHeight;
+            initScene();
+        };
+
+        const initScene = () => {
+            results = [];
+            const count = 5;
+            for(let i = 0; i < count; i++) {
+                results.push({
+                    y: height * 0.2 + (i * height * 0.15),
+                    width: width * 0.6,
+                    height: 40,
+                    opacity: 0.1 + (i * 0.05),
+                    isHero: i === 2 // Assume index 2 is the rising one
+                });
+            }
+        };
+
+        class Ribbon {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() < 0.5 ? -50 : width + 50;
+                this.y = height * Math.random();
+                this.cp1x = width * Math.random();
+                this.cp1y = height * Math.random();
+                this.cp2x = width * Math.random();
+                this.cp2y = height * Math.random();
+                this.targetX = width / 2;
+                this.targetY = height * 0.4;
+                this.progress = 0;
+                this.speed = 0.005 + Math.random() * 0.01;
+                this.color = `hsla(${190 + Math.random() * 60}, 100%, 70%, ${0.2 + Math.random() * 0.3})`;
+            }
+            update() {
+                this.progress += this.speed;
+                if(this.progress >= 1) this.reset();
+            }
+            draw() {
+                const t = this.progress;
+                const invT = 1 - t;
+                // Cubic Bezier calculation
+                const x = invT**3 * this.x + 3 * invT**2 * t * this.cp1x + 3 * invT * t**2 * this.cp2x + t**3 * this.targetX;
+                const y = invT**3 * this.y + 3 * invT**2 * t * this.cp1y + 3 * invT * t**2 * this.cp2y + t**3 * this.targetY;
+
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.cp1x, this.cp1y, this.cp2x, this.cp2y, x, y);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Head glow
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for(let i = 0; i < 15; i++) ribbons.push(new Ribbon());
+
+        const animate = () => {
+            time += 0.01;
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Draw Background Grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+            ctx.lineWidth = 1;
+            for(let i = 0; i < width; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, height);
+                ctx.stroke();
+            }
+            for(let i = 0; i < height; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(width, i);
+                ctx.stroke();
+            }
+
+            // 2. Rising Effect Logic
+            const elevation = Math.sin(time * 0.5) * 20;
+            const heroY = height * 0.4 + elevation;
+
+            // 3. Draw Ribbons
+            ribbons.forEach(r => {
+                r.targetY = heroY;
+                r.update();
+                r.draw();
+            });
+
+            // 4. Draw SERP Results
+            results.forEach(res => {
+                let y = res.y;
+                if(res.isHero) {
+                    y = heroY;
+                    ctx.fillStyle = `rgba(247, 255, 152, 0.1)`;
+                    ctx.strokeStyle = `var(--primary-color)`;
+                    ctx.lineWidth = 2;
+                    // Hero Glow
+                    ctx.shadowBlur = 30;
+                    ctx.shadowColor = 'rgba(247, 255, 152, 0.3)';
+                } else {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${res.opacity})`;
+                    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                    ctx.lineWidth = 1;
+                }
+
+                const rx = (width - res.width) / 2;
+                ctx.beginPath();
+                ctx.roundRect(rx, y, res.width, res.height, 8);
+                ctx.fill();
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Skeleton lines inside
+                ctx.fillStyle = res.isHero ? 'rgba(247, 255, 152, 0.3)' : 'rgba(255,255,255,0.05)';
+                ctx.fillRect(rx + 20, y + 15, res.width * 0.4, 4);
+                ctx.fillRect(rx + 20, y + 25, res.width * 0.2, 4);
+            });
+
+            // 5. Update UI Meter
+            if(fill && marker) {
+                const pos = 90 - (elevation + 20); // Mapping elevation to position
+                fill.style.width = `${pos}%`;
+                marker.style.right = `${100 - pos}%`;
+                marker.innerText = Math.max(1, Math.floor(10 - (pos/10)));
+            }
+
+            requestAnimationFrame(animate);
+        };
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    };
+
+    initAuthoritySurge();
 });
