@@ -2027,3 +2027,268 @@ h3 {
         right: 125vw;
     }
 }
+
+/* =============================================
+   SEO FOR EVERYONE — Sahara AI-Style Staggered Cards
+   ============================================= */
+
+.seo-for-everyone {
+    padding: 80px 0 120px;
+    background: var(--bg-color);
+}
+
+.seo-everyone-header {
+    margin-bottom: 12px;
+}
+
+.seo-everyone-header h2 {
+    font-size: 2.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-color);
+}
+
+/* Two-column stagger wrapper */
+.stagger-cards-wrapper {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* LEFT column: cards 1 & 3 — full width, flush left */
+.stagger-col-left {
+    flex: 0 0 69%;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+/* RIGHT column: cards 2 & 4 — shifted right, pushed down by half card height to center between left cards */
+.stagger-col-right {
+    flex: 0 0 69%;
+    margin-left: -38%;   /* 100% - 2×69% = right cards flush to container right edge */
+    padding-top: 184px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Base card — fill full column width */
+.stagger-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 44px 48px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Individual card colours */
+.stagger-card--1 { background: #1e2221; color: #fff; margin-top: 40px; }
+.stagger-card--2 { background: #22302c; color: #fff; margin-top: 80px; }
+.stagger-card--3 { background: #2c2e22; color: #fff; }
+.stagger-card--4 { background: #1e3030; color: #fff; margin-top: 10px; }
+
+/* Text block */
+.stagger-card__text {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Keep left card buttons within ~28% of container so right cards (starting at 31%) don't overlap them */
+.stagger-col-left .stagger-card__text {
+    max-width: 42%;
+}
+
+.stagger-card__text h3 {
+    font-size: 1.9rem;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.stagger-card__text h3 strong {
+    font-weight: 700;
+    color: #fff;
+}
+
+.stagger-card__text h3 span {
+    display: block;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.stagger-card__desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.58);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 400px;
+}
+
+/* Buttons row */
+.stagger-card__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stagger-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 99px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.stagger-btn--filled {
+    background: var(--primary-color);
+    color: #1a1c1c;
+    border: 2px solid var(--primary-color);
+}
+
+.stagger-btn--filled:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 18px rgba(247, 255, 152, 0.35);
+}
+
+.stagger-btn--outline {
+    background: transparent;
+    color: #F7FF98;
+    border: none;
+}
+
+.stagger-btn--outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+}
+
+/* Starburst icon */
+.stagger-card__icon {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    color: var(--primary-color);
+    margin-left: 24px;
+    pointer-events: none;
+}
+
+.stagger-card__icon svg { width: 100%; height: 100%; }
+
+.stagger-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+/* Spin + glow when hovering anywhere on the card */
+.stagger-card:hover .stagger-card__icon img {
+    opacity: 1;
+}
+
+/* Card 1 — clockwise spin */
+.stagger-card--1:hover .stagger-card__icon img {
+    animation: logoSpinCW 2.5s linear infinite;
+}
+
+/* Card 2 — pulse / breathe */
+.stagger-card--2:hover .stagger-card__icon img {
+    animation: logoPulse 1.2s ease-in-out infinite;
+}
+
+/* Card 3 — wobble / shake */
+.stagger-card--3:hover .stagger-card__icon img {
+    animation: logoWobble 0.8s ease-in-out infinite;
+}
+
+/* Card 4 — counter-clockwise spin */
+.stagger-card--4:hover .stagger-card__icon img {
+    animation: logoSpinCCW 2.5s linear infinite;
+}
+
+@keyframes logoSpinCW {
+    from { transform: rotate(0deg) scale(1.1); }
+    to   { transform: rotate(360deg) scale(1.1); }
+}
+
+@keyframes logoSpinCCW {
+    from { transform: rotate(0deg) scale(1.1); }
+    to   { transform: rotate(-360deg) scale(1.1); }
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1);    }
+    50%       { transform: scale(1.22); }
+}
+
+@keyframes logoWobble {
+    0%, 100% { transform: rotate(0deg)   scale(1.05); }
+    25%       { transform: rotate(-12deg) scale(1.05); }
+    75%       { transform: rotate(12deg)  scale(1.05); }
+}
+
+.stagger-card__icon svg line {
+    stroke: var(--primary-color);
+    stroke-width: 10;
+    stroke-linecap: round;
+    opacity: 0.85;
+}
+
+.stagger-card__icon svg rect {
+    stroke: var(--primary-color);
+    stroke-width: 6;
+    fill: none;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+    .stagger-cards-wrapper {
+        flex-direction: column;
+    }
+
+    .stagger-col-left,
+    .stagger-col-right {
+        flex: none;
+        width: 100%;
+        margin-left: 0;
+        padding-top: 0;
+    }
+
+    .stagger-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 28px;
+    }
+
+    .stagger-card__text { max-width: 100%; }
+
+    .stagger-card__icon {
+        width: 100px;
+        height: 100px;
+        margin-left: 0;
+        margin-top: 20px;
+        align-self: flex-end;
+    }
+}
+
