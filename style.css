@@ -1366,6 +1366,24 @@ h3 {
         max-width: 280px;
     }
 
+    /* FAQ Section Mobile */
+    .faq-card {
+        padding: 24px 16px !important;
+    }
+
+    .accordion-header {
+        padding: 16px 20px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        gap: 12px;
+        font-size: 1.1rem !important;
+    }
+
+    .accordion-content {
+        padding: 0 20px !important;
+        text-align: center !important;
+    }
+
     /* Footer Cleanup */
     .footer-grid {
         text-align: left;
