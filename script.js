@@ -319,4 +319,143 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initAuthoritySurge();
+
+    // Hero Video Switcher Logic
+    const initVideoSwitcher = () => {
+        const pillButtons = document.querySelectorAll('.pill-btn');
+        const videoContainers = document.querySelectorAll('.hero-video-overlay .video-container');
+
+        if (!pillButtons.length || !videoContainers.length) return;
+
+        pillButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoId = btn.getAttribute('data-video');
+
+                // Update Buttons
+                pillButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update Video Containers
+                videoContainers.forEach(container => {
+                    const video = container.querySelector('video');
+                    container.classList.remove('active');
+                    if (container.id === `video-${videoId}`) {
+                        container.classList.add('active');
+                        // Ensure the new active video plays if it's the expected behavior
+                    } else {
+                        // Pause the inactive video
+                        if (video) video.pause();
+                    }
+                });
+            });
+        });
+    };
+
+    const initVideoControls = () => {
+        const containers = document.querySelectorAll('.video-container');
+        const overlay = document.querySelector('.hero-video-overlay');
+        const backdrop = document.querySelector('.video-overlay-backdrop');
+
+        containers.forEach(container => {
+            const video = container.querySelector('video');
+            const playPauseBtn = container.querySelector('.play-pause');
+            const volumeBtn = container.querySelector('.volume-toggle');
+            const resizeBtn = container.querySelector('.resize-btn');
+            const progressBar = container.querySelector('.progress-bar');
+            const progressContainer = container.querySelector('.progress-container');
+
+            if (!video || !playPauseBtn || !volumeBtn || !progressBar || !progressContainer) return;
+
+            // Play/Pause
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                } else {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                }
+            });
+
+            // Volume Toggle
+            volumeBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                volumeBtn.innerHTML = video.muted ? '<i class="ri-volume-mute-fill"></i>' : '<i class="ri-volume-up-fill"></i>';
+            });
+
+            // Resize Toggle (Expand/Contract)
+            if (resizeBtn && overlay && backdrop) {
+                resizeBtn.addEventListener('click', () => {
+                    const isExpanded = overlay.classList.contains('is-expanded');
+                    
+                    if (!isExpanded) {
+                        overlay.classList.add('is-expanded');
+                        backdrop.classList.add('active');
+                        resizeBtn.innerHTML = '<i class="ri-close-line"></i>';
+                        document.body.style.overflow = 'hidden'; 
+                        
+                        // Move to root for perfect centering
+                        document.body.insertBefore(overlay, backdrop);
+                        
+                        setTimeout(() => {
+                            video.play();
+                        }, 50);
+                    } else {
+                        contractVideo(container);
+                    }
+                });
+            }
+
+            function contractVideo(targetContainer) {
+                overlay.classList.remove('is-expanded');
+                backdrop.classList.remove('active');
+                const btn = targetContainer.querySelector('.resize-btn');
+                if (btn) btn.innerHTML = '<i class="ri-aspect-ratio-line"></i>';
+                document.body.style.overflow = '';
+                
+                // Move back to hero content
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    heroContent.appendChild(overlay);
+                }
+                
+                setTimeout(() => {
+                    video.play();
+                }, 50);
+            }
+
+            // Close when clicking backdrop
+            if (backdrop) {
+                backdrop.onclick = () => {
+                    if (overlay.classList.contains('is-expanded')) {
+                        contractVideo(container);
+                    }
+                };
+            }
+
+            // Progress Update
+            video.addEventListener('timeupdate', () => {
+                const progress = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = `${progress}%`;
+            });
+
+            // Seek
+            progressContainer.addEventListener('click', (e) => {
+                const rect = progressContainer.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                video.currentTime = pos * video.duration;
+            });
+            
+            // Sync play/pause icon initially
+            video.addEventListener('play', () => {
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+            });
+            video.addEventListener('pause', () => {
+                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+            });
+        });
+    };
+
+    initVideoSwitcher();
+    initVideoControls();
 });

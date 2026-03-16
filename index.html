@@ -84,8 +84,59 @@
                     <div class="snap-item"><strong>DA 40+</strong> Backlinks</div>
                 </div>
             </div>
-        </div>
 
+            <!-- Floating Video Switcher Overlay -->
+            <div class="hero-video-overlay">
+                <!-- Pill Toggle -->
+                <div class="video-switcher-pill">
+                    <button class="pill-btn active" data-video="1" aria-label="Show Video 1"></button>
+                    <button class="pill-btn" data-video="2" aria-label="Show Video 2"></button>
+                </div>
+
+                <!-- Main Video Frame -->
+                <div class="video-main-frame">
+                    <div class="video-container active" id="video-1">
+                        <video autoplay muted loop playsinline class="hero-v-player">
+                            <source src="assets/videos/v1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause" aria-label="Play/Pause">
+                                <i class="ri-pause-fill"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn volume-toggle" aria-label="Mute/Unmute">
+                                <i class="ri-volume-mute-fill"></i>
+                            </button>
+                            <button class="control-btn resize-btn" aria-label="Expand/Contract">
+                                <i class="ri-aspect-ratio-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="video-container" id="video-2">
+                        <video autoplay muted loop playsinline class="hero-v-player">
+                            <source src="assets/videos/v2.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause" aria-label="Play/Pause">
+                                <i class="ri-pause-fill"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn volume-toggle" aria-label="Mute/Unmute">
+                                <i class="ri-volume-mute-fill"></i>
+                            </button>
+                            <button class="control-btn resize-btn" aria-label="Expand/Contract">
+                                <i class="ri-aspect-ratio-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="frame-glow"></div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <section id="services" class="services">
@@ -899,6 +950,8 @@
             </div>
         </footer>
     </div>
+
+    <div class="video-overlay-backdrop"></div>
 
     <script src="script.js"></script>
 </body>
