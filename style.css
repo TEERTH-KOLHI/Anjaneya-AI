@@ -602,7 +602,7 @@ h3 {
 .health-meter {
     position: absolute;
     top: 40px;
-    right: 40px;
+    right: 100px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2070,7 +2070,8 @@ h3 {
 /* RIGHT column: cards 2 & 4 — shifted right, pushed down by half card height to center between left cards */
 .stagger-col-right {
     flex: 0 0 69%;
-    margin-left: -38%;   /* 100% - 2×69% = right cards flush to container right edge */
+    margin-left: -38%;
+    /* 100% - 2×69% = right cards flush to container right edge */
     padding-top: 184px;
     display: flex;
     flex-direction: column;
@@ -2092,10 +2093,28 @@ h3 {
 }
 
 /* Individual card colours */
-.stagger-card--1 { background: #1e2221; color: #fff; margin-top: 40px; }
-.stagger-card--2 { background: #22302c; color: #fff; margin-top: 80px; }
-.stagger-card--3 { background: #2c2e22; color: #fff; }
-.stagger-card--4 { background: #1e3030; color: #fff; margin-top: 10px; }
+.stagger-card--1 {
+    background: #1e2221;
+    color: #fff;
+    margin-top: 40px;
+}
+
+.stagger-card--2 {
+    background: #22302c;
+    color: #fff;
+    margin-top: 80px;
+}
+
+.stagger-card--3 {
+    background: #2c2e22;
+    color: #fff;
+}
+
+.stagger-card--4 {
+    background: #1e3030;
+    color: #fff;
+    margin-top: 10px;
+}
 
 /* Text block */
 .stagger-card__text {
@@ -2191,7 +2210,10 @@ h3 {
     pointer-events: none;
 }
 
-.stagger-card__icon svg { width: 100%; height: 100%; }
+.stagger-card__icon svg {
+    width: 100%;
+    height: 100%;
+}
 
 .stagger-card__icon img {
     width: 100%;
@@ -2228,24 +2250,51 @@ h3 {
 }
 
 @keyframes logoSpinCW {
-    from { transform: rotate(0deg) scale(1.1); }
-    to   { transform: rotate(360deg) scale(1.1); }
+    from {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.1);
+    }
 }
 
 @keyframes logoSpinCCW {
-    from { transform: rotate(0deg) scale(1.1); }
-    to   { transform: rotate(-360deg) scale(1.1); }
+    from {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    to {
+        transform: rotate(-360deg) scale(1.1);
+    }
 }
 
 @keyframes logoPulse {
-    0%, 100% { transform: scale(1);    }
-    50%       { transform: scale(1.22); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.22);
+    }
 }
 
 @keyframes logoWobble {
-    0%, 100% { transform: rotate(0deg)   scale(1.05); }
-    25%       { transform: rotate(-12deg) scale(1.05); }
-    75%       { transform: rotate(12deg)  scale(1.05); }
+
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1.05);
+    }
+
+    25% {
+        transform: rotate(-12deg) scale(1.05);
+    }
+
+    75% {
+        transform: rotate(12deg) scale(1.05);
+    }
 }
 
 .stagger-card__icon svg line {
@@ -2281,7 +2330,9 @@ h3 {
         padding: 32px 28px;
     }
 
-    .stagger-card__text { max-width: 100%; }
+    .stagger-card__text {
+        max-width: 100%;
+    }
 
     .stagger-card__icon {
         width: 100px;
@@ -2291,4 +2342,3 @@ h3 {
         align-self: flex-end;
     }
 }
-
