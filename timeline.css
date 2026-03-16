@@ -187,12 +187,28 @@
   transition: opacity var(--duration) ease-in-out var(--title-delay, 0ms),
     translate var(--duration) ease-in-out var(--title-delay, 0ms);
   white-space: nowrap;
+  pointer-events: auto;
+}
+
+.cards>li>h2::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #F7FF98;
+  border-radius: 50%;
+  opacity: inherit;
+  box-shadow: 0 0 15px rgba(247, 255, 152, 0.6);
+  z-index: 51;
 }
 
 .cards>li>h2::before {
   content: '';
   position: absolute;
-  top: -124px;
+  top: -136px; /* Moved up to make room for dot */
   left: 50%;
   transform: translateX(-50%);
   width: 0;
@@ -201,6 +217,21 @@
   border-right: 6px solid transparent;
   border-bottom: 120px solid #F7FF98;
   opacity: inherit;
+  transform-origin: bottom center;
+  z-index: 50;
+  cursor: pointer;
+  /* Increase hit area for easier hover */
+  outline: 20px solid transparent;
+}
+
+.cards>li:has(input:checked):hover>h2::before {
+  animation: needle-wiggle 0.8s ease-in-out infinite;
+}
+
+@keyframes needle-wiggle {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(-8deg); }
+  75% { transform: translateX(-50%) rotate(8deg); }
 }
 
 .cards>li>p {
@@ -228,6 +259,7 @@ li:has(input:checked) {
   --title-delay: calc(var(--duration) * 3);
   --info-opacity: 1;
   --info-delay: calc(var(--duration) * 4);
+  pointer-events: auto;
 }
 
 .cards:has(input:checked) {
