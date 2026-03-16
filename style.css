@@ -2341,4 +2341,150 @@ h3 {
         margin-top: 20px;
         align-self: flex-end;
     }
+
 }
+
+/* =============================================
+   FEATURE SPLIT SECTION (Sahara AI Style)
+   ============================================= */
+
+.feature-split-section {
+    padding: 120px 0;
+}
+
+.feature-split-outer {
+    background: #fff;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-l);
+    box-shadow: var(--card-shadow);
+    padding: 80px 60px;
+    overflow: hidden;
+}
+
+.feature-split-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.feature-split-info {
+    flex: 0 0 35%;
+    position: sticky;
+    top: 120px;
+}
+
+.feature-split-info h2 {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+}
+
+.feature-split-info h2 span {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.feature-split-info p {
+    font-size: 1.2rem;
+    color: rgba(26, 28, 28, 0.6);
+    line-height: 1.5;
+    max-width: 380px;
+}
+
+.feature-split-cards {
+    flex: 0 0 58%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.fsplit-card {
+    background: #fff;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 32px;
+    transition: all 0.5s var(--transition);
+    cursor: default;
+}
+
+.fsplit-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    border-color: rgba(26, 28, 28, 0.15);
+}
+
+.fsplit-header {
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.fsplit-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.fsplit-header h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.fsplit-content {
+    padding: 32px 40px;
+    border-top: var(--border-width) solid var(--border-color);
+}
+
+.fsplit-content p {
+    font-size: 1.05rem;
+    color: rgba(26, 28, 28, 0.5);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive adjustment */
+@media (max-width: 992px) {
+    .feature-split-outer {
+        padding: 40px 24px;
+    }
+
+    .feature-split-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    
+    .feature-split-info {
+        flex: 0 0 100%;
+        position: static;
+        text-align: center;
+    }
+    
+    .feature-split-info p {
+        margin: 0 auto;
+    }
+    
+    .feature-split-cards {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    
+    .feature-split-info h2 {
+        font-size: 3rem;
+    }
+}
+
+.feature-split-wrapper--alt {
+    margin-top: 120px;
+    border-top: var(--border-width) solid var(--border-color);
+    padding-top: 120px;
+}
