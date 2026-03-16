@@ -16,6 +16,35 @@
   max-width: 920px;
 }
 
+@media (max-width: 768px) {
+  .roadmap-box {
+    --radius: 56vw; /* Keeps labels on screen */
+  }
+  
+  .wheel-wrap {
+    height: calc(var(--radius) + 140px) !important;
+  }
+  
+  .cards-container {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 85%) !important;
+  }
+  
+  .cards > li > h2 {
+    --title-top: 6rem !important;
+  }
+  
+  .cards > li > h2::before {
+    top: -76px !important;
+    border-bottom: 60px solid #F7FF98 !important;
+  }
+  
+  .cards > li > p {
+    --info-top: 9.5rem !important;
+    --info-width: 90% !important;
+    font-size: 0.95rem !important;
+  }
+}
+
 .roadmap-box::before {
   content: '';
   position: absolute;
