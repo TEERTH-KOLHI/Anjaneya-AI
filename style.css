@@ -1231,7 +1231,7 @@ h3 {
 
 .accordion-header {
     width: 100%;
-    padding: 32px 0;
+    padding: 20px 0;
     background: none;
     border: none;
     text-align: left;
@@ -1252,11 +1252,12 @@ h3 {
 .accordion-header::after {
     content: '+';
     font-size: 1.5rem;
-    transition: transform 0.3s;
+    transition: all 0.3s;
 }
 
-.accordion-item.active .accordion-header::after {
-    transform: rotate(45deg);
+.accordion-item.is-open .accordion-header::after {
+    content: '-';
+    transform: none;
 }
 
 .accordion-content {
@@ -1265,8 +1266,8 @@ h3 {
     transition: max-height 0.4s ease-out;
 }
 
-.accordion-item.active .accordion-content {
-    max-height: 200px;
+.accordion-item.is-open .accordion-content {
+    max-height: 500px;
     margin-bottom: 32px;
 }
 

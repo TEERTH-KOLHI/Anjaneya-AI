@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
             const item = header.parentElement;
-            const isActive = item.classList.contains('active');
+            const isActive = item.classList.contains('is-open');
 
             // Close all items
-            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('is-open'));
 
             if (!isActive) {
-                item.classList.add('active');
+                item.classList.add('is-open');
             }
         });
     });
