@@ -2,11 +2,14 @@
 /* Scoped to .roadmap-box to prevent global style leakage */
 
 #roadmap {
-  padding: 80px 0;
+  padding: 80px 0 0;
   background: #000;
 }
 
 .roadmap-box {
+  --items: 12;
+  --radius: min(48vw, 440px);
+  --duration: 200ms;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -47,8 +50,7 @@
 .wheel-wrap {
   position: relative;
   width: 100%;
-  padding-top: 52%;
-  /* half of the circle's height */
+  height: var(--radius);
   overflow: hidden;
 }
 
@@ -62,9 +64,6 @@
 
 /* ── Cards container ── */
 .cards-container {
-  --items: 12;
-  --radius: min(48vw, 440px);
-  --duration: 200ms;
   --cards-container-size: calc(var(--radius) * 2);
   --label-offset: calc(var(--radius) * -1 - 0.8rem);
   --label-size: clamp(28px, 5vw, 46px);
