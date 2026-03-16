@@ -836,9 +836,23 @@ h3 {
     transition: all 0.8s ease-out;
 }
 
+.reveal-left {
+    transform: translateX(-120px);
+    opacity: 0;
+}
+
+.reveal-right {
+    transform: translateX(120px);
+    opacity: 0;
+}
+
+.reveal-delay {
+    transition-delay: 0.4s;
+}
+
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, 0);
 }
 
 .fade-in {
