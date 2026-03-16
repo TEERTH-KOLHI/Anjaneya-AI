@@ -1114,12 +1114,35 @@ h3 {
 .pricing-features ul {
     list-style: none;
     text-align: left;
-    margin: 40px 0;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 60px;
+    max-width: 850px;
+    justify-content: center;
 }
 
 .pricing-features li {
-    padding: 12px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: rgba(34, 44, 44, 0.7);
+}
+
+.pricing-features li i {
+    color: #000;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 992px) {
+    .pricing-features ul {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 
 /* Animations */
