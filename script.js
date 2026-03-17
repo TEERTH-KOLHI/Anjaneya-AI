@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Play/Pause
             playPauseBtn.addEventListener('click', () => {
                 if (video.paused) {
+                    video.volume = 1.0; // Ensure volume is full
                     video.play();
                     playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
                 } else {
@@ -381,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Volume Toggle
             volumeBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
+                if (!video.muted) video.volume = 1.0; // Set to full volume when unmuted
                 volumeBtn.innerHTML = video.muted ? '<i class="ri-volume-mute-fill"></i>' : '<i class="ri-volume-up-fill"></i>';
             });
 
