@@ -2479,22 +2479,22 @@ h3 {
     position: absolute;
     right: 0;
     left: 0;
-    height: calc(50% - 5px);
-    border: 1px solid var(--border-color);
+    height: 50%;
+    border: 1.5px solid var(--border-color);
     transition: all .15s ease;
-    border-radius: 99px;
+    border-radius: 999px;
 }
 
 .nav-button::before {
     top: 0;
     border-bottom-width: 0;
-    border-radius: 99px 99px 0 0;
+    border-radius: 999px 999px 0 0;
 }
 
 .nav-button::after {
     bottom: 0;
     border-top-width: 0;
-    border-radius: 0 0 99px 99px;
+    border-radius: 0 0 999px 999px;
 }
 
 .nav-button:active::before,
@@ -2514,12 +2514,12 @@ h3 {
 .button_lg {
     position: relative;
     display: block;
-    padding: 8px 20px;
+    padding: 7px 18px;
     color: var(--text-color);
     background-color: var(--primary-color);
     overflow: hidden;
     box-shadow: inset 0px 0px 0px 1px transparent;
-    border-radius: 99px;
+    border-radius: 999px;
 }
 
 .button_sl {
