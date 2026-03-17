@@ -730,6 +730,79 @@ h3 {
 }
 
 
+/* AI SEO Marquee Section */
+.ai-seo-marquee {
+    padding: 5rem 0 3.5rem;
+    overflow: hidden;
+    position: relative;
+    border-bottom: var(--border-width) solid var(--border-color);
+    background: linear-gradient(180deg, var(--bg-color) 0%, var(--secondary-bg) 100%);
+}
+
+.ai-seo-marquee .section-header h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: inline-flex;
+    gap: 4rem;
+    animation: scroll-marquee 25s linear infinite;
+    align-items: center;
+}
+
+.ai-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-color);
+    opacity: 0.4;
+    transition: var(--transition);
+    cursor: default;
+    line-height: 1; /* Prevent line-height from pushing text down */
+}
+
+.ai-brand i,
+.ai-brand .ai-logo {
+    display: block; /* Remove baseline alignment issues */
+    font-size: 2rem;
+    height: 1.8rem; /* Slightly smaller for better optical matching with text */
+    width: auto;
+    object-fit: contain;
+}
+
+.ai-brand .ai-logo {
+    filter: brightness(0) saturate(100%); /* Make images black by default to match icons */
+    transition: var(--transition);
+}
+
+.ai-brand:hover {
+    opacity: 1;
+    color: var(--text-color);
+    transform: scale(1.05);
+}
+
+.ai-brand:hover .ai-logo {
+    filter: none; /* Show original color on hover */
+}
+
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 2rem)); }
+}
 
 /* Services */
 .services,
