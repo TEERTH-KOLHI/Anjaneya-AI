@@ -785,8 +785,19 @@ h3 {
 }
 
 .ai-brand .ai-logo {
-    filter: brightness(0) saturate(100%); /* Make images black by default to match icons */
+    min-width: 24px;
+    opacity: 0.8; /* Make icons slightly more prominent than text by default */
     transition: var(--transition);
+}
+
+.ai-brand img.ai-logo {
+    /* Remove forced solid black to allow colorful logos or grayscale versions */
+    filter: grayscale(0.8) opacity(0.8);
+}
+
+/* Grok and You.com (inline SVGs) inherit currentcolor */
+.ai-brand svg.ai-logo {
+    fill: currentColor;
 }
 
 .ai-brand:hover {
