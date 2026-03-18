@@ -94,7 +94,7 @@ h3 {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
     text-decoration: none;
     color: inherit;
     font-family: var(--font-heading);
@@ -103,7 +103,7 @@ h3 {
 }
 
 .logo img {
-    height: 40px;
+    height: 60px;
     width: auto;
 }
 
@@ -1039,156 +1039,231 @@ h3 {
     border-radius: var(--radius-m);
 }
 
-/* Diagnostic Grid Background */
-.diagnostic-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle at 2px 2px, rgba(0, 255, 136, 0.05) 1px, transparent 0);
-    background-size: 24px 24px;
-    opacity: 0.5;
-}
-
-/* Scrolling Code Lines */
-.diagnostic-code {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 60%;
-    padding: 40px;
-    opacity: 0.3;
-}
-
-.code-line {
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    width: 100%;
-}
-
-.code-line.vr {
-    background: rgba(255, 77, 77, 0.2);
-    width: 70%;
-}
-
-/* Moving Scan Line */
-.audit-scan-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-    box-shadow: 0 0 20px var(--primary-color);
-    z-index: 5;
-    animation: diagnosticScan 4s ease-in-out infinite;
-}
-
-@keyframes diagnosticScan {
-
-    0%,
-    100% {
-        top: 10%;
-    }
-
-    50% {
-        top: 90%;
-    }
-}
-
-/* Health Meter Card */
-.health-meter {
-    position: absolute;
-    top: 40px;
-    right: 100px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px 24px;
-    border-radius: 16px;
-    text-align: center;
-    z-index: 10;
-    animation: meterFloat 4s ease-in-out infinite;
-}
-
-.meter-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-}
-
-.meter-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    font-family: var(--font-heading);
-}
-
-@keyframes meterFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Diagnostic Nodes */
-.diagnostic-nodes {
-    position: absolute;
+/* Technical Audit HUD */
+.audit-hud {
+    position: relative;
     width: 100%;
     height: 100%;
+    background: #080808;
+    color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
 }
 
-.d-node {
-    position: absolute;
-    width: 10px;
-    height: 10px;
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.hud-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
     border-radius: 50%;
 }
 
-.d-node.pulse {
-    top: 40%;
-    left: 30%;
-    background: #ff4d4d;
-    box-shadow: 0 0 15px #ff4d4d;
-    animation: nodeRepair 4s infinite;
+.status-dot.pulse {
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: pulseGlow 2s infinite;
 }
 
-.d-node:nth-child(2) {
-    top: 70%;
-    left: 40%;
+.hud-timer {
+    font-family: monospace;
+    font-size: 0.85rem;
+    opacity: 0.5;
 }
 
-.d-node:nth-child(3) {
-    top: 25%;
-    left: 60%;
+.crawl-network {
+    position: relative;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.d-node.fix {
-    background: #00ff88;
-    box-shadow: 0 0 15px #00ff88;
-    opacity: 0.4;
+.node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
 }
 
-@keyframes nodeRepair {
+.node--central {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: #000;
+    font-size: 1.5rem;
+    box-shadow: 0 0 30px rgba(247, 255, 152, 0.3);
+}
 
-    0%,
-    45% {
-        background: #ff4d4d;
-        box-shadow: 0 0 15px #ff4d4d;
-    }
+.node-ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    animation: rippleOut 3s infinite;
+}
 
-    55%,
-    100% {
-        background: #00ff88;
-        box-shadow: 0 0 15px #00ff88;
-    }
+.node--sub {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    transform: translate(var(--x), var(--y));
+    animation: orbitFloat 4s ease-in-out infinite;
+    animation-delay: var(--d);
+}
+
+.node-label {
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.5;
+}
+
+.crawl-svg {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    pointer-events: none;
+}
+
+.orbit-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.03);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+}
+
+.crawl-line {
+    stroke: var(--primary-color);
+    stroke-width: 1;
+    opacity: 0.1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: crawlData 4s linear infinite;
+}
+
+.hud-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+}
+
+.hud-stat {
+    display: grid;
+    grid-template-columns: 100px 1fr 40px;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-name {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.stat-progress {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.stat-bar {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.stat-val {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.floating-bot {
+    position: absolute;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.bot-google {
+    top: 30%;
+    left: 10%;
+    animation: botPatrolA 8s ease-in-out infinite;
+}
+
+.bot-gpt {
+    bottom: 30%;
+    right: 10%;
+    animation: botPatrolB 8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes rippleOut {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes orbitFloat {
+    0%, 100% { transform: translate(var(--x), calc(var(--y) + 5px)); }
+    50% { transform: translate(var(--x), calc(var(--y) - 5px)); }
+}
+
+@keyframes crawlData {
+    0% { stroke-dashoffset: 200; opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes botPatrolA {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(150px, 40px); }
+    66% { transform: translate(50px, 150px); }
+}
+
+@keyframes botPatrolB {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-150px, -40px); }
+    66% { transform: translate(-50px, -150px); }
 }
 
 .card-wide {
@@ -2014,7 +2089,7 @@ h3 {
 }
 
 .footer-brand-section .logo img {
-    height: 48px;
+    height: 70px;
     /* Slightly larger for footer prominence */
 }
 
@@ -2922,8 +2997,8 @@ h3 {
 /* Starburst icon */
 .stagger-card__icon {
     flex-shrink: 0;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     color: var(--primary-color);
     margin-left: 24px;
     pointer-events: none;
