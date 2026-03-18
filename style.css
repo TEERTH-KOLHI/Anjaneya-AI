@@ -208,12 +208,12 @@ h3 {
 
 .btn-premium-outline {
     background: transparent !important;
-    border: 1.5px solid var(--text-color) !important;
+    border: 1px solid var(--text-color) !important;
     transition: all 0.4s var(--transition);
     position: relative;
     z-index: 1;
     overflow: hidden;
-    height: 55px;
+    height: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -258,7 +258,7 @@ h3 {
     display: inline-flex;
     transition: var(--transition);
     align-items: stretch; /* Ensure children can stretch to full height */
-    height: 55px; /* Standardize height for perfect alignment */
+    height: 50px; /* Standardize height for perfect alignment */
 }
 
 .btn-lightning-decor {
