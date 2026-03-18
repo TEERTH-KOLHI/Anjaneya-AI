@@ -91,16 +91,36 @@ h3 {
     align-items: center;
 }
 
-.logo {
-    display: flex;
+.logo, .logo-audiowide {
+    display: inline-flex;
     align-items: center;
     gap: 4px;
     text-decoration: none;
     color: inherit;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-family: 'Audiowide', sans-serif;
+    font-weight: 400;
 }
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.logo-audiowide {
+    font-family: 'Audiowide', sans-serif;
+    font-weight: 400;
+    gap: 0;
+}
+
+.logo-reduced-size {
+    font-size: 0.75em; /* Proportional reduction for headings */
+    display: inline-block;
+}
+
+.logo-momentum {
+    color: #0088FF !important; /* Premium Electric Blue */
+}
+
+
 
 .logo img {
     height: 60px;
@@ -2120,10 +2140,44 @@ h3 {
 }
 
 .social-links a:hover {
-    background: #f8f9fa;
-    border-color: #000;
-    color: #000;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.social-links a[aria-label="X"]:hover {
+    color: #000000;
+    border-color: #000000;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.social-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.social-links a[aria-label="YouTube"]:hover {
+    color: #FF0000;
+    border-color: #FF0000;
+    background: rgba(255, 0, 0, 0.05);
+}
+
+.social-links a[aria-label="LinkedIn"]:hover {
+    color: #0077B5;
+    border-color: #0077B5;
+    background: rgba(0, 119, 181, 0.05);
+}
+
+.social-links a[aria-label="Discord"]:hover {
+    color: #5865F2;
+    border-color: #5865F2;
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.social-links a[aria-label="Telegram"]:hover {
+    color: #0088CC;
+    border-color: #0088CC;
+    background: rgba(0, 136, 204, 0.05);
 }
 
 .footer-nav-section {
