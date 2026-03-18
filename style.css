@@ -213,6 +213,11 @@ h3 {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    height: 55px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px; /* Standardize horizontal padding */
 }
 
 .btn-premium-outline::before {
@@ -233,7 +238,75 @@ h3 {
 
 .btn-premium-outline:hover {
     color: white !important;
-    transform: translateY(-3px);
+}
+
+/* Lightning Button Style */
+.btn-lightning {
+    text-decoration: none;
+    line-height: 1;
+    border-radius: 99px; /* Pill shape */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: inline-flex;
+    transition: var(--transition);
+    align-items: stretch; /* Ensure children can stretch to full height */
+    height: 55px; /* Standardize height for perfect alignment */
+}
+
+.btn-lightning-decor {
+    position: absolute;
+    inset: 0;
+    background-color: var(--clr);
+    transform: translateX(-101%);
+    transition: transform 0.6s var(--transition);
+    z-index: 0;
+}
+
+.btn-lightning-content {
+    display: flex;
+    align-items: stretch; /* Ensure icon background stretches */
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-lightning__icon {
+    width: 75px;
+    background-color: var(--clr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.6s var(--transition);
+    align-self: stretch; /* Fill entire button height */
+}
+
+.btn-lightning__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.4s var(--transition);
+    padding: 0 32px 0 20px; /* Reduced left padding to bring text closer to icon */
+    font-family: var(--font-heading);
+    font-size: 15px;
+    white-space: nowrap;
+    flex-grow: 1; /* Ensure text area fills the remaining space and centers within it */
+}
+
+.btn-lightning:hover .btn-lightning__text {
+    color: var(--text-color); /* Stay dark on yellow background */
+}
+
+.btn-lightning:hover .btn-lightning-decor {
+    transform: translateX(0);
+}
+
+.btn-lightning:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Same as static shadow */
 }
 
 /* Hero Section */
@@ -1364,7 +1437,8 @@ h3 {
         align-items: center !important;
     }
 
-    .btn {
+    .btn,
+    .btn-lightning {
         width: 100% !important;
         max-width: 320px !important;
         text-align: center !important;
