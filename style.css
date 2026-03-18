@@ -218,6 +218,9 @@ h3 {
     align-items: center;
     justify-content: center;
     padding: 0 32px; /* Standardize horizontal padding */
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
 }
 
 .btn-premium-outline::before {
