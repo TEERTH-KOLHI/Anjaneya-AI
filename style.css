@@ -81,7 +81,7 @@ h3 {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85); /* Slightly clearer background to pop */
     backdrop-filter: blur(12px);
     border-radius: 0 0 32px 32px; /* Super smooth bottom curves */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04); /* Soft shadow to frame the curves */
@@ -145,7 +145,7 @@ h3 {
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: #0088FF;
 }
 
 .menu-toggle {
@@ -1514,9 +1514,10 @@ h3 {
 
     /* Expert Mobile Navbar */
     .navbar {
-        border-radius: 0 !important;
+        border-radius: 0 !important; /* Flattened navbar corners for mobile view edge-to-edge fit */
     }
     .menu-toggle {
+        border-radius: 0 !important;
         display: block !important;
     }
 
@@ -1556,7 +1557,7 @@ h3 {
 
     .nav-links a:hover {
         padding-left: 10px;
-        color: var(--primary-color);
+        color: #0088FF;
     }
 
     /* Total removal of button aesthetics for 'Get Started' in the mobile sidebar drawer */
@@ -3647,6 +3648,6 @@ h3 {
 
     .nav-links .cssbuttons-io-button:hover {
         padding-left: 10px !important;
-        color: var(--primary-color) !important;
+        color: #0088FF !important;
     }
 }
