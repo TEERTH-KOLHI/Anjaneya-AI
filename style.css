@@ -76,7 +76,7 @@ h3 {
 
 /* Navbar */
 .navbar {
-    padding: 10px 0;
+    padding: 5px 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -123,7 +123,7 @@ h3 {
 
 
 .logo img {
-    height: 60px;
+    height: 48px;
     width: auto;
 }
 
@@ -3539,10 +3539,66 @@ h3 {
         width: 100%;
     }
 }
+/* NEW GET STARTED BUTTON STYLES (Desktop/Laptop) */
+.cssbuttons-io-button {
+  background: #111; /* Clean black background */
+  color: white !important; /* Force white text over default navbar link styles */
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 0.9em; /* Reduced left padding to trim width */
+  font-size: 16px; /* Slightly smaller to match sleeker height */
+  font-weight: 500;
+  border-radius: 99px; /* Maximize rounded corners for a sleek pill shape */
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: none; /* Removed colored inset shadow */
+  overflow: hidden;
+  position: relative;
+  height: 2.3em; /* Reduced height for a sleeker look */
+  padding-right: 2.8em; /* Reduced right padding to trim width closer to icon */
+  cursor: pointer;
+  text-decoration: none; /* In case it's applied to an <a> tag */
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8em; /* Scaled down proportionally with button height */
+  width: 1.8em; /* Maintained circular ratio */
+  border-radius: 99px; /* Round the inner icon perfectly */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Clean, neutral soft drop shadow */
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #111; /* Changed arrow from purple to black */
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
 /* FINAL MOBILE SIDEBAR NAVIGATION TAB RESET */
 @media (max-width: 992px) {
     /* Reset the anchor itself */
-    .nav-links .nav-button {
+    .nav-links .cssbuttons-io-button {
         background: transparent !important;
         background-color: transparent !important;
         background-image: none !important;
@@ -3568,44 +3624,22 @@ h3 {
         visibility: visible !important;
         transition: padding-left 0.3s ease !important;
         text-decoration: none !important;
+        justify-content: flex-start !important;
     }
 
-    /* Reset the .button_lg inside it */
-    .nav-links .nav-button .button_lg {
-        display: block !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        color: inherit !important;
-    }
-
-    /* Hide the animated background slice */
-    .nav-links .nav-button .button_sl {
+    /* Hide the animated background/icon slice entirely */
+    .nav-links .cssbuttons-io-button .icon {
         display: none !important;
     }
     
     /* Reset borders, pseudo elements, and decorators */
-    .nav-links .nav-button::before,
-    .nav-links .nav-button::after,
-    .nav-links .nav-button .button_lg::before,
-    .nav-links .nav-button .button_lg::after {
+    .nav-links .cssbuttons-io-button::before,
+    .nav-links .cssbuttons-io-button::after {
         display: none !important;
         content: none !important;
     }
 
-    /* Ensure text matches other menu links */
-    .nav-links .nav-button .button_text {
-        position: static !important;
-        z-index: 1 !important;
-        display: inline !important;
-        font-family: inherit !important;
-        font-size: inherit !important;
-        font-weight: inherit !important;
-    }
-
-    .nav-links .nav-button:hover {
+    .nav-links .cssbuttons-io-button:hover {
         padding-left: 10px !important;
         color: var(--primary-color) !important;
     }
