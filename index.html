@@ -100,10 +100,14 @@
             <!-- Floating Video Switcher Overlay -->
             <div class="hero-video-overlay">
                 <!-- Pill Toggle -->
-                <div class="pill-label">Video 1</div>
-                <div class="video-switcher-pill">
-                    <button class="pill-btn active" data-video="1" aria-label="Show Video 1"></button>
-                    <button class="pill-btn" data-video="2" aria-label="Show Video 2"></button>
+                <div class="pill-switcher-wrapper">
+                    <input type="checkbox" class="pill-button-input" checked="checked" id="hero-video-toggle">
+                    <div class="pill-button">
+                        <span class="pill-button-selection pill-button-selection_on pill-button-selection_active"
+                            data-video="1">Video 1</span>
+                        <span class="pill-button-selection pill-button-selection_off" data-video="2">Video 2</span>
+                        <span class="pill-button-highlight"></span>
+                    </div>
                 </div>
 
                 <!-- Main Video Frame -->

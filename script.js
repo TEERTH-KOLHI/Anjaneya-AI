@@ -322,33 +322,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hero Video Switcher Logic
     const initVideoSwitcher = () => {
-        const pillButtons = document.querySelectorAll('.pill-btn');
+        const pillButtonOnText = document.querySelector('.pill-button-selection_on');
+        const pillButtonOffText = document.querySelector('.pill-button-selection_off');
+        const pillButtonHighlight = document.querySelector('.pill-button-highlight');
+        const pillButtonInput = document.querySelector('.pill-button-input');
+        const pillSelections = document.querySelectorAll('.pill-button-selection');
         const videoContainers = document.querySelectorAll('.hero-video-overlay .video-container');
 
-        if (!pillButtons.length || !videoContainers.length) return;
+        if (!pillButtonOnText || !pillButtonHighlight) return;
 
-        pillButtons.forEach(btn => {
+        const updateHighlight = (el) => {
+            pillButtonHighlight.style.width = el.offsetWidth + 'px';
+            pillButtonHighlight.style.left = el.offsetLeft + 'px';
+        };
+
+        // Initial Cold Start - using small timeout to ensure layout is ready
+        setTimeout(() => {
+            const activeInitial = document.querySelector('.pill-button-selection_active');
+            if (activeInitial) updateHighlight(activeInitial);
+        }, 100);
+
+        pillSelections.forEach(btn => {
             btn.addEventListener('click', () => {
-                const videoId = btn.getAttribute('data-video');
+                if (!btn.classList.contains('pill-button-selection_active')) {
+                    pillSelections.forEach(s => s.classList.remove('pill-button-selection_active'));
+                    btn.classList.add('pill-button-selection_active');
 
-                // Update Buttons
-                pillButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                    const videoId = btn.getAttribute('data-video');
 
-                // Update Video Containers
-                const pillLabel = document.querySelector('.pill-label');
-                videoContainers.forEach(container => {
-                    const video = container.querySelector('video');
-                    container.classList.remove('active');
-                    if (container.id === `video-${videoId}`) {
-                        container.classList.add('active');
-                        if (pillLabel) pillLabel.innerText = `Video ${videoId}`;
-                    } else {
-                        // Pause the inactive video
-                        if (video) video.pause();
+                    if (btn.classList.contains('pill-button-selection_off') && pillButtonInput) {
+                        pillButtonInput.checked = false;
+                        updateHighlight(btn);
+                    } else if (pillButtonInput) {
+                        pillButtonInput.checked = true;
+                        updateHighlight(btn);
                     }
-                });
+
+                    // Switch Video Container
+                    videoContainers.forEach(container => {
+                        const video = container.querySelector('video');
+                        container.classList.remove('active');
+                        if (container.id === `video-${videoId}`) {
+                            container.classList.add('active');
+                            if (video) video.play();
+                        } else {
+                            if (video) video.pause();
+                        }
+                    });
+                }
             });
+        });
+
+        // Handle resize to keep highlight aligned
+        window.addEventListener('resize', () => {
+            const active = document.querySelector('.pill-button-selection_active');
+            if (active) updateHighlight(active);
         });
     };
 
