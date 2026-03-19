@@ -82,7 +82,10 @@ h3 {
     width: 100%;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 32px 32px; /* Super smooth bottom curves */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04); /* Soft shadow to frame the curves */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.02); /* Crisp terminating edge */
 }
 
 .nav-content {
@@ -1510,6 +1513,9 @@ h3 {
     }
 
     /* Expert Mobile Navbar */
+    .navbar {
+        border-radius: 0 !important;
+    }
     .menu-toggle {
         display: block !important;
     }
