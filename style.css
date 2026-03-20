@@ -1004,7 +1004,6 @@ h3 {
     font-size: 19px;
     font-weight: 900;
     color: #000;
-    text-transform: uppercase;
     margin-bottom: 8px;
     display: block;
     position: relative;
@@ -1042,7 +1041,6 @@ h3 {
     padding: 10px;
     font-size: 14px;
     font-weight: 900;
-    text-transform: uppercase;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -1074,6 +1072,12 @@ h3 {
 
 .s-feature .card__button:active {
     transform: scale(0.95);
+}
+
+.s-feature .card__button.is-confirmed::before {
+    content: "Confirmed" !important;
+    background-color: #5ad641 !important;
+    transform: translateY(0) !important;
 }
 
 @media (max-width: 768px) {

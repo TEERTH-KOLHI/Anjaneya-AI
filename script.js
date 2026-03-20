@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const initScene = () => {
             satellites = [];
             particles = [];
-            mainNode = new Node(width / 2, height / 2, 25, "YOUR WEBSITE", true);
+            mainNode = new Node(width / 2, height / 2, 25, "Your Website", true);
 
             const labels = ["Forbes PR", "Tech Journal", "DA 60+ Blog", "Wiki Link", "High-DA Guest Post"];
             const count = labels.length;
