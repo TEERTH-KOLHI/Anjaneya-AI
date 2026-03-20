@@ -475,4 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initVideoSwitcher();
     initVideoControls();
+
+    // Auto Update Year
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
 });
