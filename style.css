@@ -3877,7 +3877,25 @@ h3 {
     }
 
     .stagger-card__text {
-        max-width: 100%;
+        max-width: 100% !important;
+        flex: 1 !important;
+    }
+
+    .stagger-card__actions {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .stagger-btn {
+        flex: 1 !important;
+        font-size: 13px !important;
+        padding: 10px 8px !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
 
     .stagger-card__icon {
