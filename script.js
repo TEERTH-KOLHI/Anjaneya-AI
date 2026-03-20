@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rainbowContainer.appendChild(bar);
         }
     }
-    // Authority Surge Canvas Animation (Iteration 2)
+    // Link Ecosystem Animation (Authority Flow)
     const initAuthoritySurge = () => {
         const canvas = document.getElementById('authority-canvas');
         if (!canvas) return;
@@ -168,10 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = canvas.parentElement;
         const fill = container.querySelector('.meter-fill');
         const marker = container.querySelector('.meter-marker');
-        
+
         let width, height, time = 0;
-        let results = [];
-        let ribbons = [];
+        let mainNode, satellites = [], particles = [];
 
         const resize = () => {
             width = canvas.width = container.offsetWidth;
@@ -179,135 +178,122 @@ document.addEventListener('DOMContentLoaded', () => {
             initScene();
         };
 
-        const initScene = () => {
-            results = [];
-            const count = 5;
-            for(let i = 0; i < count; i++) {
-                results.push({
-                    y: height * 0.2 + (i * height * 0.15),
-                    width: width * 0.6,
-                    height: 40,
-                    opacity: 0.1 + (i * 0.05),
-                    isHero: i === 2 // Assume index 2 is the rising one
-                });
+        class Node {
+            constructor(x, y, radius, label, isMain = false) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.label = label;
+                this.isMain = isMain;
+                this.pulse = 0;
             }
-        };
+            draw() {
+                this.pulse += 0.05;
+                const p = Math.sin(this.pulse) * 5;
+                
+                // Glow
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius + 15 + p, 0, Math.PI * 2);
+                ctx.fillStyle = this.isMain ? 'rgba(247, 255, 152, 0.15)' : 'rgba(255, 255, 255, 0.05)';
+                ctx.fill();
 
-        class Ribbon {
-            constructor() {
-                this.reset();
+                // Core
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius + p * 0.5, 0, Math.PI * 2);
+                ctx.fillStyle = this.isMain ? 'var(--primary-color)' : 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+
+                // Label
+                ctx.fillStyle = 'white';
+                ctx.font = `bold ${this.isMain ? '14px' : '10px'} Inter, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillText(this.label, this.x, this.y + this.radius + 20);
             }
-            reset() {
-                this.x = Math.random() < 0.5 ? -50 : width + 50;
-                this.y = height * Math.random();
-                this.cp1x = width * Math.random();
-                this.cp1y = height * Math.random();
-                this.cp2x = width * Math.random();
-                this.cp2y = height * Math.random();
-                this.targetX = width / 2;
-                this.targetY = height * 0.4;
-                this.progress = 0;
+        }
+
+        class Particle {
+            constructor(startNode, endNode) {
+                this.start = startNode;
+                this.end = endNode;
+                this.progress = Math.random();
                 this.speed = 0.005 + Math.random() * 0.01;
-                this.color = `hsla(${190 + Math.random() * 60}, 100%, 70%, ${0.2 + Math.random() * 0.3})`;
             }
             update() {
                 this.progress += this.speed;
-                if(this.progress >= 1) this.reset();
+                if (this.progress > 1) {
+                    this.progress = 0;
+                    if (this.end.isMain) {
+                        this.end.pulse += 0.5; // Pulse the main node on hit
+                    }
+                }
             }
             draw() {
-                const t = this.progress;
-                const invT = 1 - t;
-                // Cubic Bezier calculation
-                const x = invT**3 * this.x + 3 * invT**2 * t * this.cp1x + 3 * invT * t**2 * this.cp2x + t**3 * this.targetX;
-                const y = invT**3 * this.y + 3 * invT**2 * t * this.cp1y + 3 * invT * t**2 * this.cp2y + t**3 * this.targetY;
+                const x = this.start.x + (this.end.x - this.start.x) * this.progress;
+                const y = this.start.y + (this.end.y - this.start.y) * this.progress;
 
                 ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.bezierCurveTo(this.cp1x, this.cp1y, this.cp2x, this.cp2y, x, y);
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                // Head glow
-                ctx.beginPath();
-                ctx.arc(x, y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = 'var(--primary-color)';
                 ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
+                ctx.shadowColor = 'var(--primary-color)';
                 ctx.fill();
                 ctx.shadowBlur = 0;
             }
         }
 
-        for(let i = 0; i < 15; i++) ribbons.push(new Ribbon());
+        const initScene = () => {
+            satellites = [];
+            particles = [];
+            mainNode = new Node(width / 2, height / 2, 25, "YOUR WEBSITE", true);
+
+            const labels = ["Forbes PR", "Tech Journal", "DA 60+ Blog", "Wiki Link", "High-DA Guest Post"];
+            const count = labels.length;
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * Math.PI * 2;
+                const dist = Math.min(width, height) * 0.35;
+                const x = width / 2 + Math.cos(angle) * dist;
+                const y = height / 2 + Math.sin(angle) * dist;
+                const sat = new Node(x, y, 8, labels[i]);
+                satellites.push(sat);
+                
+                // Add particles for each link
+                for(let j = 0; j < 3; j++) {
+                    particles.push(new Particle(sat, mainNode));
+                }
+            }
+        };
 
         const animate = () => {
-            time += 0.01;
+            time += 0.02;
             ctx.clearRect(0, 0, width, height);
 
-            // 1. Draw Background Grid
-            ctx.strokeStyle = 'rgba(255,255,255,0.03)';
-            ctx.lineWidth = 1;
-            for(let i = 0; i < width; i += 40) {
+            // 1. Draw Background Connections
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.setLineDash([5, 5]);
+            satellites.forEach(sat => {
                 ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, height);
+                ctx.moveTo(sat.x, sat.y);
+                ctx.lineTo(mainNode.x, mainNode.y);
                 ctx.stroke();
-            }
-            for(let i = 0; i < height; i += 40) {
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(width, i);
-                ctx.stroke();
-            }
+            });
+            ctx.setLineDash([]);
 
-            // 2. Rising Effect Logic
-            const elevation = Math.sin(time * 0.5) * 20;
-            const heroY = height * 0.4 + elevation;
-
-            // 3. Draw Ribbons
-            ribbons.forEach(r => {
-                r.targetY = heroY;
-                r.update();
-                r.draw();
+            // 2. Draw Particles (Energy Flow)
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
 
-            // 4. Draw SERP Results
-            results.forEach(res => {
-                let y = res.y;
-                if(res.isHero) {
-                    y = heroY;
-                    ctx.fillStyle = `rgba(247, 255, 152, 0.1)`;
-                    ctx.strokeStyle = `var(--primary-color)`;
-                    ctx.lineWidth = 2;
-                    // Hero Glow
-                    ctx.shadowBlur = 30;
-                    ctx.shadowColor = 'rgba(247, 255, 152, 0.3)';
-                } else {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${res.opacity})`;
-                    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-                    ctx.lineWidth = 1;
-                }
+            // 3. Draw Nodes
+            satellites.forEach(sat => sat.draw());
+            mainNode.draw();
 
-                const rx = (width - res.width) / 2;
-                ctx.beginPath();
-                ctx.roundRect(rx, y, res.width, res.height, 8);
-                ctx.fill();
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-
-                // Skeleton lines inside
-                ctx.fillStyle = res.isHero ? 'rgba(247, 255, 152, 0.3)' : 'rgba(255,255,255,0.05)';
-                ctx.fillRect(rx + 20, y + 15, res.width * 0.4, 4);
-                ctx.fillRect(rx + 20, y + 25, res.width * 0.2, 4);
-            });
-
-            // 5. Update UI Meter
+            // 4. Update UI Meter (Simulate Rank Rise)
             if(fill && marker) {
-                const pos = 90 - (elevation + 20); // Mapping elevation to position
+                const pos = 70 + Math.sin(time) * 10;
                 fill.style.width = `${pos}%`;
                 marker.style.right = `${100 - pos}%`;
-                marker.innerText = Math.max(1, Math.floor(10 - (pos/10)));
+                marker.innerText = Math.max(1, Math.floor(11 - (pos/10)));
             }
 
             requestAnimationFrame(animate);
