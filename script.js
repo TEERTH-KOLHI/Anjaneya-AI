@@ -476,6 +476,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initVideoSwitcher();
     initVideoControls();
 
+    // Snapshot Button Toggle
+    window.toggleSnapshotConfirm = (btn) => {
+        btn.classList.toggle('is-confirmed');
+        btn.innerText = btn.classList.contains('is-confirmed') ? 'Confirmed' : 'Active';
+    };
+
     // Auto Update Year
     const yearEl = document.getElementById('current-year');
     if (yearEl) {
