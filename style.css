@@ -3859,15 +3859,26 @@ h3 {
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
     .stagger-cards-wrapper {
-        flex-direction: column;
+        flex-direction: column !important;
+        gap: 20px !important;
     }
 
     .stagger-col-left,
     .stagger-col-right {
-        flex: none;
-        width: 100%;
-        margin-left: 0;
-        padding-top: 0;
+        flex: none !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-top: 0 !important;
+        gap: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .stagger-card--1,
+    .stagger-card--2,
+    .stagger-card--3,
+    .stagger-card--4 {
+        margin-top: 0 !important;
     }
 
     .stagger-card {
