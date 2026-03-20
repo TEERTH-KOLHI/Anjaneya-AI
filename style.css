@@ -1220,6 +1220,10 @@ h3 {
     max-width: var(--sz-toggle);
     transition: all 0.5s ease;
     color: hsla(var(--black-muted), 0.75);
+    background-color: white;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .u-box-foot-action i {
@@ -1239,10 +1243,17 @@ h3 {
     color: #EA4335 !important;
 }
 
+.u-box-foot-action {
+    text-decoration: none !important;
+}
+
 .u-box-foot-action:hover {
-    background-color: white !important;
-    border: 1px solid black !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    background-color: #f8f8f8 !important;
+    transform: translateY(-2px);
+}
+
+.u-box-foot-action:hover i {
+    color: black !important;
 }
 
 .u-box-foot-action svg {
