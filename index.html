@@ -200,13 +200,13 @@
             <div class="u-corner">
                 <i data-corner="tl"></i>
                 <i data-corner="br"></i>
-                <div data-action="notif" class="u-action">
+                <div data-action="notif" class="u-action" onclick="playBellSound(this)">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="font-size: 24px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"></path>
                         <path d="M16 8m-3 0a3 3 0 1 0 8 0a3 3 0 1 0 -8 0" class="dot" fill="red" stroke="none"></path>
                     </svg>
                 </div>
-                <div data-action="more" class="u-action">
+                <div data-action="share" class="u-action" onclick="sharePage()">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="font-size: 24px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path>
                     </svg>
@@ -1373,6 +1373,31 @@
     </a>
 
     <script src="script.js"></script>
+    <script>
+        function playBellSound(el) {
+            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+            audio.currentTime = 0; // Rewind to start
+            audio.play().catch(err => console.log('Audio play failed:', err));
+            // Visual feedback
+            el.style.transform = "scale(0.85)";
+            setTimeout(() => {
+                el.style.transform = "";
+            }, 100);
+        }
+
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'SEOMomentum - Anjaneya AI Technologies',
+                    text: 'Explore this high-impact SEO Strategy and Performance Snapshot!',
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Share link copied to clipboard!');
+            }
+        }
+    </script>
 </body>
 
 </html>
